@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Pembelajaran - Beranda</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <!-- Lucide Icon -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f7f7;
+    }
+    .brand-primary { background-color: #2c3e50; }
+    .brand-accent { background-color: #e67e22; }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="text-2xl font-extrabold text-gray-900 tracking-wider">
+          MEDIA <span class="text-[#e67e22]">AJAR</span>
+        </div>
+        <nav class="hidden md:flex space-x-8 font-medium text-lg">
+          <a href="#beranda" class="hover:text-[#e67e22] transition duration-300">Beranda</a>
+          <a href="#layanan" class="hover:text-[#e67e22] transition duration-300">Materi</a>
+          <a href="#kontak" class="hover:text-[#e67e22] transition duration-300">Tentang</a>
+        </nav>
+        <button id="menu-button" class="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e67e22]">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden brand-primary transition-all duration-300">
+      <a href="#beranda" class="block py-3 px-8 text-white hover:bg-gray-700">Beranda</a>
+      <a href="#layanan" class="block py-3 px-8 text-white hover:bg-gray-700">Materi</a>
+      <a href="#kontak" class="block py-3 px-8 text-white hover:bg-gray-700">Tentang</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="beranda" class="brand-primary text-white py-16 md:py-24 lg:py-32 relative overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+
+        <!-- Konten Kiri -->
+        <div class="max-w-xl text-center md:text-left mb-10 md:mb-0">
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 tracking-wide">
+            Media Pembelajaran <br>
+            Jurusan Akuntansi<br>
+            SMKN 2 Palangka Raya
+        </h1>
+
+        <p class="text-lg md:text-xl mb-8 font-light text-gray-300 leading-relaxed">
+            Akses <span class="text-[#e67e22] font-semibold">modul, video,</span> dan 
+            <span class="text-[#e67e22] font-semibold">tugas mandiri</span> yang terintegrasi penuh 
+            dengan ekosistem Google untuk pembelajaran inovatif, adaptif dan tuntas.
+        </p>
+
+        <a href="#layanan" 
+            class="inline-block brand-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
+            Lihat Modul Ajar
+        </a>
+        </div>
+
+        <!-- Ilustrasi Kanan -->
+        <div class="md:w-1/2 flex justify-center">
+        <div class="bg-white rounded-2xl p-8 shadow-2xl text-center text-gray-800 w-full max-w-sm border-b-4 border-brand-accent transition-transform duration-300 hover:scale-[1.02]">
+            
+            <!-- GANTI SVG DENGAN LOGO PNG -->
+            <img src="assets/images/logo.png" alt="Logo Media Ajar" 
+                class="h-24 w-24 mx-auto mb-4 object-contain drop-shadow-lg transition-transform duration-300 hover:scale-110">
+
+            <p class="font-semibold text-gray-700 text-sm md:text-base">
+            Pembelajaran Inovatif, <br>Adaptif dan Tuntas
+            </p>
+        </div>
+        </div>
+
+    </div>
+    </section>
+
+    <!-- MODUL AJAR (DINAMIS) -->
+    <section id="layanan" class="py-20 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold mb-4 text-gray-900">MODUL AJAR</h2>
+        <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+          Modul Ajar terdiri dari Materi Ajar - Materi Video - dan Tugas. Semua data dimuat otomatis dari Google Drive.
+        </p>
+
+        <!-- Loading -->
+        <div id="loading" class="text-center py-12 text-gray-500 text-xl font-medium">
+          <i data-lucide="loader-circle" class="w-8 h-8 animate-spin inline-block mr-2"></i> Memuat data modul...
+        </div>
+
+        <!-- Container Modul -->
+        <div id="materi-container" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 hidden">
+          <!-- Modul dimuat otomatis -->
+        </div>
+      </div>
+    </section>
+
+    <!-- DOKUMENTASI DINAMIS -->
+    <section id="dokumentasi" class="py-20 bg-[#2C3E50] text-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold mb-12">DOKUMENTASI KEGIATAN</h2>
+
+        <!-- Pesan loading -->
+        <div id="dokumentasi-loading" class="text-gray-300 text-lg">
+          Memuat dokumentasi kegiatan...
+        </div>
+
+        <!-- Kontainer galeri -->
+        <div
+          id="dokumentasi-container"
+          class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10"
+        ></div>
+      </div>
+    </section>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const url =
+        "https://opensheet.elk.sh/1SWra1xFOd8Q1CKH2rLqBErhZD95SkNjfffRTIP9LpKU/Dokumentasi";
+
+      const container = document.getElementById("dokumentasi-container");
+      const loading = document.getElementById("dokumentasi-loading");
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        container.innerHTML = "";
+
+        data.forEach((item) => {
+          const file = item.foto.trim();
+          const lower = file.toLowerCase();
+          let mediaTag = "";
+          let type = "image";
+          let previewSrc = "";
+          let embedSrc = "";
+
+          // === 1️⃣ Gambar lokal ===
+          if (lower.endsWith(".jpg") || lower.endsWith(".png") || lower.endsWith(".jpeg") || lower.endsWith(".gif")) {
+            previewSrc = `assets/images/${file}`;
+            mediaTag = `
+              <img src="${previewSrc}" alt="${item.judul}" 
+                  class="w-full h-56 object-cover rounded-lg cursor-pointer" 
+                  data-src="${previewSrc}" data-type="image">
+            `;
+          }
+
+          // === 2️⃣ YouTube video ===
+          else if (file.includes("youtube.com") || file.includes("youtu.be")) {
+            const videoId = file.includes("youtu.be")
+              ? file.split("youtu.be/")[1]
+              : new URL(file).searchParams.get("v");
+            embedSrc = `https://www.youtube.com/embed/${videoId}`;
+            previewSrc = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+            mediaTag = `
+              <div class="relative group cursor-pointer" data-src="${embedSrc}" data-type="iframe">
+                <img src="${previewSrc}" alt="${item.judul}" class="w-full h-56 object-cover rounded-lg">
+                <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-60 transition duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white opacity-90 group-hover:scale-110 transform transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            `;
+            type = "iframe";
+          }
+
+          // === 3️⃣ Google Drive video ===
+          else if (file.includes("drive.google.com")) {
+            const match = file.match(/\/d\/([^/]+)\//);
+            if (match) {
+              const id = match[1];
+              embedSrc = `https://drive.google.com/file/d/${id}/preview`;
+              previewSrc = `https://drive.google.com/thumbnail?id=${id}`;
+
+              mediaTag = `
+                <div class="relative group cursor-pointer" data-src="${embedSrc}" data-type="iframe">
+                  <img src="${previewSrc}" alt="${item.judul}" class="w-full h-56 object-cover rounded-lg">
+                  <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-60 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white opacity-90 group-hover:scale-110 transform transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              `;
+              type = "iframe";
+            }
+          }
+
+          // === 4️⃣ Media tidak dikenali ===
+          else {
+            previewSrc = "https://via.placeholder.com/400x300?text=Media+Tidak+Dikenali";
+            mediaTag = `<img src="${previewSrc}" class="w-full h-56 object-cover rounded-lg">`;
+          }
+
+          // === Buat Kartu Dokumentasi ===
+          const card = document.createElement("div");
+          card.className =
+            "bg-[#1E293B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform duration-300";
+          card.innerHTML = `
+            ${mediaTag}
+            <div class="p-4">
+              <h3 class="text-xl font-bold text-orange-400 mb-2">${item.judul}</h3>
+              <p class="text-gray-300 text-sm">${item.deskripsi}</p>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+        loading.style.display = "none";
+        container.classList.remove("hidden");
+
+        // === Lightbox Dokumentasi Stabil ===
+        const overlay = document.createElement("div");
+        overlay.id = "lightbox";
+        overlay.className =
+          "fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50";
+        overlay.innerHTML = `
+          <div class="relative max-w-5xl max-h-[90vh] w-auto">
+            <span id="closeLightbox" class="absolute top-2 right-4 text-white text-3xl cursor-pointer">&times;</span>
+            <div id="lightboxContent" class="flex items-center justify-center"></div>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+
+        // Klik → tampil fullscreen
+        container.addEventListener("click", function (e) {
+          const target = e.target.closest("[data-src]");
+          if (!target) return;
+
+          const src = target.dataset.src;
+          const type = target.dataset.type;
+          const content = document.getElementById("lightboxContent");
+
+          if (type === "image") {
+            content.innerHTML = `<img src="${src}" class="max-h-[90vh] max-w-full rounded-xl shadow-lg">`;
+          } else if (type === "iframe") {
+            let iframeSrc = src;
+
+            // Google Drive MP4 → pastikan pakai /preview
+            if(src.includes("drive.google.com")) {
+              const match = src.match(/\/d\/([^/]+)/);
+              if(match) {
+                const fileId = match[1];
+                iframeSrc = `https://drive.google.com/file/d/${fileId}/preview`;
+              }
+            }
+
+            content.innerHTML = `
+              <iframe src="${iframeSrc}" 
+                      class="w-[80vw] h-[45vw] max-w-4xl max-h-[90vh] rounded-xl shadow-lg" 
+                      frameborder="0" allowfullscreen allow="autoplay">
+              </iframe>
+            `;
+          }
+
+          overlay.classList.remove("hidden");
+        });
+
+        document.getElementById("closeLightbox").addEventListener("click", () => {
+          overlay.classList.add("hidden");
+          document.getElementById("lightboxContent").innerHTML = "";
+        });
+
+        overlay.addEventListener("click", (e) => {
+          if (e.target.id === "lightbox") {
+            overlay.classList.add("hidden");
+            document.getElementById("lightboxContent").innerHTML = "";
+          }
+        });
+
+      } catch (err) {
+        console.error("Gagal memuat data dokumentasi:", err);
+        loading.innerText = "❌ Gagal memuat data dokumentasi.";
+      }
+    });
+    </script>
+
+    <!-- TESTIMONI -->
+    <section class="py-20 bg-gray-100">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold mb-12 text-gray-900">TESTIMONI :</h2>
+        <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl border-l-8 border-[#e67e22]">
+          <p class="text-xl italic mb-6 text-gray-700">
+            "Media pembelajaran ini sangat membantu saya dalam mengulang materi kapanpun dan dimanapun kami berada."
+          </p>
+          <div class="flex items-center justify-center">
+            <!-- FOTO SISWA -->
+            <img src="assets/images/ds.jpg" alt="Foto Amanda Putri" 
+                class="w-14 h-14 rounded-full object-cover border-2 border-[#e67e22] mr-4 shadow-md hover:scale-105 transition-transform duration-300">
+            <div class="text-left">
+              <p class="font-bold text-lg text-gray-900">Ada Apa Dengan Cinta</p>
+              <p class="text-sm text-gray-500">Siswa SMKN 2 Palangka Raya</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="brand-primary py-12 text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-xl font-bold mb-4 text-[#e67e22]">MEDIA AJAR</h4>
+          <p class="text-gray-400 text-sm">Platform pembelajaran interaktif <br>untuk siswa SMKN 2 Palangka Raya <br>Jurusan Akuntansi.</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-semibold mb-4">Jurusan SMK</h4>
+          <p class="text-gray-400 text-sm mb-2">Akuntansi</p>
+          <p class="text-gray-400 text-sm mb-2">Perkantoran</p>
+        </div>
+        <div id="kontak">
+          <h4 class="text-xl font-semibold mb-4">Hubungi Kami</h4>
+          <p class="text-gray-400 text-sm mb-2">Jl. RA. Kartini - Palangka Raya</p>
+          <p class="text-gray-400 text-sm">Telp: 0823-5020-1923</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+        &copy; 2025 SMKN 2 Palangka Raya. Hak Cipta Tariya Sari.
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+<script>
+    const menuBtn = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    const APPSCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrYE_JRLwJUbp7pyW1n6CgIfFDP3E228pyRMeHu77ckWDowYVZdg-qIDo1gO1z5tzWQA/exec";
+    const container = document.getElementById("materi-container");
+    const loading = document.getElementById("loading");
+
+    async function loadModules() {
+      try {
+        const response = await fetch(APPSCRIPT_URL, { cache: "no-store" });
+        const modules = await response.json();
+
+        if (!modules || !Array.isArray(modules) || modules.length === 0) {
+          container.innerHTML = `<div class="col-span-full text-center text-gray-500 p-8">📄 Belum ada modul tersedia.</div>`;
+          loading.classList.add("hidden");
+          container.classList.remove("hidden");
+          return;
+        }
+
+        renderModules(modules);
+      } catch (err) {
+        console.error(err);
+        loading.innerHTML = "❌ Gagal memuat data modul. Periksa URL Apps Script.";
+      }
+    }
+
+    function renderModules(modules) {
+      container.innerHTML = modules.map(modul => `
+        <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-100 transform transition-transform duration-300 hover:scale-[1.02]">
+          <h3 class="text-xl font-extrabold text-gray-800 mb-2 flex items-center gap-2">
+            ${modul.title}
+          </h3>
+          <p class="text-gray-600 text-sm mb-5 text-justify leading-relaxed line-clamp-3 flex items-start gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-[#e67e22] flex-shrink-0 mt-[3px]"></i>
+            <span>${modul.description}</span></p>
+
+          <div class="flex flex-wrap gap-3">
+            ${modul.driveLink ? `<a href="${modul.driveLink}" target="_blank" class="flex-1 min-w-[45%] bg-[#2c3e50] text-white font-semibold py-2 rounded-lg text-sm hover:bg-[#34495e] transition text-center">Materi</a>` : ''}
+            ${modul.youtubeLink ? `<a href="${modul.youtubeLink}" target="_blank" class="flex-1 min-w-[45%] bg-[#e74c3c] text-white font-semibold py-2 rounded-lg text-sm hover:bg-[#c0392b] transition text-center">Video</a>` : ''}
+            ${modul.tugasLink ? `<a href="${modul.tugasLink}" target="_blank" class="flex-1 min-w-[45%] bg-[#f39c12] text-white font-semibold py-2 rounded-lg text-sm hover:bg-[#d68910] transition text-center">Tugas</a>` : ''}
+          </div>
+        </div>
+      `).join('');
+      loading.classList.add("hidden");
+      container.classList.remove("hidden");
+      lucide.createIcons();
+    }
+
+    document.addEventListener("DOMContentLoaded", loadModules);
+</script>
+
+</body>
+</html>
