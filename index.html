@@ -152,15 +152,14 @@
           let embedSrc = "";
 
           // === 1️⃣ Gambar lokal ===
-          if (lower.endsWith(".jpg") || lower.endsWith(".png") || lower.endsWith(".jpeg") || lower.endsWith(".gif")) {
-            // Mengganti 'assets/images/' dengan placeholder aman karena file lokal tidak dijamin tersedia
-            previewSrc = `https://placehold.co/400x300/2c3e50/ffffff?text=IMG+${item.judul.replace(/\s/g, '+')}`;
-            mediaTag = `
-              <img src="${previewSrc}" alt="${item.judul}" 
-                  class="w-full h-56 object-cover rounded-lg cursor-pointer" 
-                  data-src="${previewSrc}" data-type="image">
-            `;
-          }
+          if (lower.endsWith(".jpg") || lower.endsWith(".png") || lower.endsWith(".jpeg") || lower.endsWith(".gif")) {
+            previewSrc = `assets/images/${file}`;
+            mediaTag = `
+              <img src="${previewSrc}" alt="${item.judul}" 
+                  class="w-full h-56 object-cover rounded-lg cursor-pointer" 
+                  data-src="${previewSrc}" data-type="image">
+            `;
+          }
 
           // === 2️⃣ YouTube video ===
           else if (file.includes("youtube.com") || file.includes("youtu.be")) {
