@@ -50,42 +50,47 @@
 
   <main>
   <!-- HERO SECTION -->
-      <section id="beranda" class="brand-primary text-white py-16 md:py-24 lg:py-32 relative overflow-hidden">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
-    
-          <!-- Konten Kiri -->
-          <div class="max-w-3xl text-center md:text-left mb-0">
-            <h4 class="text-4xl md:text-5xl font-extrabold leading-snug mb-4 tracking-wide">
-              MEDIA AJAR AKUNTANSI<br>
-              SMKN 2 PALANGKA RAYA
-            </h4>
-    
-            <p class="text-lg md:text-xl mb-6 font-light text-gray-300 leading-relaxed">
-              Akses <span class="text-[#e67e22] font-semibold">modul, video,</span> dan 
-              <span class="text-[#e67e22] font-semibold">tugas mandiri</span> yang terintegrasi penuh 
-              dengan ekosistem Google untuk pembelajaran inovatif, adaptif, dan tuntas.
-            </p>
-    
-            <a href="#layanan" 
-              class="inline-block bg-gradient-to-r from-[#e67e22] to-[#f39c12] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
-              MODUL AJAR
-            </a>
-          </div>
-    
-          <!-- Ilustrasi Kanan -->
-          <div class="md:w-1/2 flex justify-center">
-            <div class="bg-white rounded-2xl p-8 shadow-2xl text-center text-gray-800 w-full max-w-sm border-b-4 border-brand-accent transition-transform duration-300 hover:scale-[1.02]">
-              <img src="assets/images/logo.png" alt="Logo Media Ajar" 
-                class="h-24 w-24 mx-auto mb-4 object-contain drop-shadow-lg transition-transform duration-300 hover:scale-110">
-              <p class="font-semibold text-gray-700 text-sm md:text-base">
-                Pembelajaran Inovatif, <br>Adaptif dan Tuntas
-              </p>
-            </div>
-          </div>
-    
+  <section id="beranda" class="brand-primary text-white py-16 md:py-24 lg:py-32 relative overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
+
+      <!-- Konten Kiri -->
+      <div class="max-w-3xl text-center md:text-left mb-0">
+        <h4 class="text-4xl md:text-5xl font-extrabold leading-snug mb-4 tracking-wide">
+          MEDIA AJAR AKUNTANSI<br>
+          SMKN 2 PALANGKA RAYA
+        </h4>
+
+        <p class="text-lg md:text-xl mb-6 font-light text-gray-300 leading-relaxed">
+          Akses <span class="text-[#e67e22] font-semibold">modul, video,</span> dan 
+          <span class="text-[#e67e22] font-semibold">tugas mandiri</span> yang terintegrasi penuh 
+          dengan ekosistem Google untuk pembelajaran inovatif, adaptif, dan tuntas.
+        </p>
+
+        <a href="#layanan" 
+          class="inline-block bg-gradient-to-r from-[#e67e22] to-[#f39c12] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
+          MODUL AJAR
+        </a>
+      </div>
+
+      <!-- Ilustrasi Kanan -->
+      <div class="md:w-1/2 flex justify-center">
+        <!-- Placeholder for missing image - Using a styled div instead -->
+        <div class="bg-white rounded-2xl p-8 shadow-2xl text-center text-gray-800 w-full max-w-sm border-b-4 border-brand-accent transition-transform duration-300 hover:scale-[1.02]">
+          <!-- Menggunakan Placeholder Image -->
+          <img src="https://placehold.co/96x96/2c3e50/ffffff?text=LOGO" alt="Logo Media Ajar Placeholder" 
+            class="h-24 w-24 mx-auto mb-4 object-contain drop-shadow-lg transition-transform duration-300 hover:scale-110"
+            onerror="this.onerror=null;this.src='https://placehold.co/96x96/2c3e50/ffffff?text=LOGO';">
+          <p class="font-semibold text-gray-700 text-sm md:text-base">
+            Pembelajaran Inovatif, <br>Adaptif dan Tuntas
+          </p>
         </div>
-      </section>
-    </main>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+
     <!-- MODUL AJAR (DINAMIS) -->
     <section id="layanan" class="py-20 bg-white">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -148,7 +153,8 @@
 
           // === 1️⃣ Gambar lokal ===
           if (lower.endsWith(".jpg") || lower.endsWith(".png") || lower.endsWith(".jpeg") || lower.endsWith(".gif")) {
-            previewSrc = `assets/images/${file}`;
+            // Mengganti 'assets/images/' dengan placeholder aman karena file lokal tidak dijamin tersedia
+            previewSrc = `https://placehold.co/400x300/2c3e50/ffffff?text=IMG+${item.judul.replace(/\s/g, '+')}`;
             mediaTag = `
               <img src="${previewSrc}" alt="${item.judul}" 
                   class="w-full h-56 object-cover rounded-lg cursor-pointer" 
@@ -201,7 +207,7 @@
 
           // === 4️⃣ Media tidak dikenali ===
           else {
-            previewSrc = "https://via.placeholder.com/400x300?text=Media+Tidak+Dikenali";
+            previewSrc = "https://placehold.co/400x300?text=Media+Tidak+Dikenali";
             mediaTag = `<img src="${previewSrc}" class="w-full h-56 object-cover rounded-lg">`;
           }
 
@@ -294,15 +300,17 @@
         <h2 class="text-4xl font-bold mb-12 text-gray-900">TESTIMONI :</h2>
         <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl border-l-8 border-[#e67e22]">
           <p class="text-xl italic mb-6 text-gray-700">
-            "Media pembelajaran ini sangat membantu saya dalam mengulang materi kapanpun dan dimanapun berada."
+            "Media pembelajaran ini sangat membantu saya dalam mengulang materi kapanpun dan dimanapun kami berada."
           </p>
           <div class="flex items-center justify-center">
             <!-- FOTO SISWA -->
-            <img src="assets/images/ds.jpg" alt="Foto Amanda Putri" 
-                class="w-14 h-14 rounded-full object-cover border-2 border-[#e67e22] mr-4 shadow-md hover:scale-105 transition-transform duration-300">
+            <!-- Mengganti 'assets/images/ds.jpg' dengan placeholder aman -->
+            <img src="https://placehold.co/56x56/e67e22/ffffff?text=DS" alt="Foto Amanda Putri" 
+                class="w-14 h-14 rounded-full object-cover border-2 border-[#e67e22] mr-4 shadow-md hover:scale-105 transition-transform duration-300"
+                onerror="this.onerror=null;this.src='https://placehold.co/56x56/e67e22/ffffff?text=DS';">
             <div class="text-left">
               <p class="font-bold text-lg text-gray-900">Ada Apa Dengan Cinta</p>
-              <p class="text-sm text-gray-500">Siswa </p>
+              <p class="text-sm text-gray-500">Siswa SMKN 2 Palangka Raya</p>
             </div>
           </div>
         </div>
@@ -313,21 +321,60 @@
   <!-- FOOTER -->
   <footer class="brand-primary py-12 text-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div>
-          <h4 class="text-xl font-bold mb-4 text-[#e67e22]">MEDIA AJAR</h4>
-          <p class="text-gray-400 text-sm">Platform pembelajaran interaktif untuk siswa SMKN 2 Palangka Raya Jurusan Akuntansi.</p>
-        </div>
-        <div>
-          <h4 class="text-xl font-semibold mb-4">JURUSAN SMK</h4>
-          <p class="text-gray-400 text-sm mb-1">Akuntansi - Perkantoran </p>
+      
+      <!-- STRUKTUR BARU 2 KOLOM UNTUK FOOTER -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+        
+        <!-- KOLOM 1: Peta Lokasi (Kiri di Desktop, Atas di Mobile) -->
+        <div id="lokasi-peta">
+          <h4 class="text-xl font-bold mb-4 text-[#e67e22]">LOKASI KAMI</h4>
           
+          <!-- PETA GOOGLE MAPS DENGAN MARKER (IFRAME) -->
+          <div class="mt-4 rounded-xl overflow-hidden shadow-xl border-2 border-[#e67e22] w-full h-64">
+            <iframe
+                width="100%"
+                height="100%"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+                src="https://maps.google.com/maps?q=SMKN+2+Palangka+Raya+Jalan+RA+Kartini&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+                class="w-full h-full"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <!-- AKHIR PETA GOOGLE MAPS -->
+
         </div>
-        <div id="kontak">
-          <h4 class="text-xl font-semibold mb-4">KONTAK</h4>
-          <p class="text-gray-400 text-sm mb-2">Jl. RA. Kartini - Palangka Raya</p>
+
+        <!-- KOLOM 2: Konten Teks (Kanan di Desktop, Bawah di Mobile) -->
+        <!-- SPASI DIBUAT LEBIH RAPAT: space-y-5 dan mb-3 pada h4 -->
+        <div class="space-y-5 md:space-y-6">
+
+          <!-- 1. MEDIA AJAR -->
+          <div>
+            <h4 class="text-xl font-bold mb-3 text-[#e67e22]">MEDIA AJAR</h4>
+            <p class="text-gray-400 text-sm">Platform pembelajaran interaktif <br>untuk siswa SMKN 2 Palangka Raya <br>Jurusan Akuntansi.</p>
+          </div>
+
+          <!-- 2. JURUSAN SMK -->
+          <div>
+            <h4 class="text-xl font-semibold mb-3">Jurusan SMK</h4>
+            <p class="text-gray-400 text-sm mb-2">Akuntansi & Perkantoran</p>
+          </div>
+
+          <!-- 3. HUBUNGI KAMI -->
+          <div id="kontak">
+            <h4 class="text-xl font-semibold mb-3">Hubungi Kami</h4>
+            <p class="text-gray-400 text-sm mb-0">Jl. RA. Kartini - Palangka Raya</p>
+          </div>
         </div>
+
       </div>
+      <!-- AKHIR DARI STRUKTUR 2 KOLOM -->
+
       <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
         &copy; 2025 SMKN 2 Palangka Raya. Hak Cipta Tariya Sari.
       </div>
@@ -341,6 +388,11 @@
     menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     document.querySelectorAll('#mobile-menu a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Menginisialisasi ikon Lucide pada saat konten sudah dimuat
+    document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
     });
 
     const APPSCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrYE_JRLwJUbp7pyW1n6CgIfFDP3E228pyRMeHu77ckWDowYVZdg-qIDo1gO1z5tzWQA/exec";
@@ -388,6 +440,7 @@
       lucide.createIcons();
     }
 
+    // Panggil loadModules setelah DOM siap
     document.addEventListener("DOMContentLoaded", loadModules);
 </script>
 
