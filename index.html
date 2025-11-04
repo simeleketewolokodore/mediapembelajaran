@@ -77,7 +77,7 @@
         <!-- Placeholder for missing image - Using a styled div instead -->
         <div class="bg-white rounded-2xl p-8 shadow-2xl text-center text-gray-800 w-full max-w-sm border-b-4 border-brand-accent transition-transform duration-300 hover:scale-[1.02]">
           <!-- Menggunakan Placeholder Image -->
-          <img src="https://placehold.co/96x96/2c3e50/ffffff?text=LOGO" alt="Logo Media Ajar Placeholder" 
+          <img src="assets/images/logo.png" alt="Logo Media Ajar Placeholder" 
             class="h-24 w-24 mx-auto mb-4 object-contain drop-shadow-lg transition-transform duration-300 hover:scale-110"
             onerror="this.onerror=null;this.src='https://placehold.co/96x96/2c3e50/ffffff?text=LOGO';">
           <p class="font-semibold text-gray-700 text-sm md:text-base">
@@ -296,20 +296,20 @@
     <!-- TESTIMONI -->
     <section class="py-20 bg-gray-100">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold mb-12 text-gray-900">TESTIMONI :</h2>
+        <h2 class="text-2xl font-bold mb-12 text-gray-900">TESTIMONI :</h2>
         <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl border-l-8 border-[#e67e22]">
           <p class="text-xl italic mb-6 text-gray-700">
-            "Media pembelajaran ini sangat membantu saya dalam mengulang materi kapanpun dan dimanapun kami berada."
+            " Media pembelajaran ini sangat membantu saya dalam mengulang materi kapanpun dan dimanapun berada "
           </p>
           <div class="flex items-center justify-center">
             <!-- FOTO SISWA -->
             <!-- Mengganti 'assets/images/ds.jpg' dengan placeholder aman -->
-            <img src="https://placehold.co/56x56/e67e22/ffffff?text=DS" alt="Foto Amanda Putri" 
+            <img src="assets/images/ds.jpg" alt="Foto DS" 
                 class="w-14 h-14 rounded-full object-cover border-2 border-[#e67e22] mr-4 shadow-md hover:scale-105 transition-transform duration-300"
                 onerror="this.onerror=null;this.src='https://placehold.co/56x56/e67e22/ffffff?text=DS';">
             <div class="text-left">
               <p class="font-bold text-lg text-gray-900">Ada Apa Dengan Cinta</p>
-              <p class="text-sm text-gray-500">Siswa SMKN 2 Palangka Raya</p>
+              <p class="text-sm text-gray-500">Siswa</p>
             </div>
           </div>
         </div>
@@ -420,7 +420,7 @@
     function renderModules(modules) {
       container.innerHTML = modules.map(modul => `
         <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-100 transform transition-transform duration-300 hover:scale-[1.02]">
-          <h3 class="text-xl font-extrabold text-gray-800 mb-2 flex items-center gap-2">
+          <h3 class="text-70px font-extrabold text-gray-800 mb-2 text-center">
             ${modul.title}
           </h3>
           <p class="text-gray-600 text-sm mb-5 text-justify leading-relaxed line-clamp-3 flex items-start gap-2">
