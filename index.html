@@ -18,7 +18,6 @@
   </style>
 </head>
 <body class="text-gray-800">
-
   <header class="sticky top-0 z-50 bg-white shadow-md">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-4">
@@ -45,7 +44,6 @@
   </header>
 
   <main>
-  
   <section id="beranda" class="brand-primary text-white py-16 md:py-24 lg:py-32 relative overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
       <div class="max-w-3xl text-center md:text-left mb-0">
@@ -126,19 +124,8 @@
           let type = "image";
           let previewSrc = "";
           let embedSrc = "";
-          if (lower.endsWith(".jpg") || lower.endsWith(".png") || lower.endsWith(".jpeg") || lower.endsWith(".gif")) {
-            previewSrc = `assets/images/${file}`;
-            mediaTag = `
-              <div class="relative">
-                <img src="${previewSrc}" alt="${item.judul}" 
-                    class="w-full h-56 object-cover rounded-t-2xl cursor-pointer"
-                    data-src="${previewSrc}" data-type="image">
-            </div>
-            `;
-          }
 
-          // === 2️⃣ YouTube video ===
-          else if (file.includes("youtube.com") || file.includes("youtu.be")) {
+          if (file.includes("youtube.com") || file.includes("youtu.be")) {
             const videoId = file.includes("youtu.be")
               ? file.split("youtu.be/")[1]
               : new URL(file).searchParams.get("v");
@@ -151,9 +138,7 @@
               </div>
             `;
             type = "iframe";
-          }
-
-          else if (file.includes("drive.google.com")) {
+          } else if (file.includes("drive.google.com")) {
             const match = file.match(/\/d\/([^/]+)\//);
             if (match) {
               const id = match[1];
@@ -167,10 +152,24 @@
               `;
               type = "iframe";
             }
+          } 
+          else if (lower.endsWith(".jpg") || lower.endsWith(".jpeg") || lower.endsWith(".png") || lower.endsWith(".gif") || lower.endsWith(".webp")) {
+            if (file.startsWith("http")) {
+              previewSrc = file;
+            } else {
+              previewSrc = `assets/images/${file}`;
+            }
+            
+            mediaTag = `
+              <div class="relative">
+                  <img src="${previewSrc}" alt="${item.judul}" 
+                      class="w-full h-56 object-cover rounded-t-2xl cursor-pointer"
+                      data-src="${previewSrc}" data-type="image">
+              </div>
+              `;
           }
-
           else {
-            previewSrc = "https://placehold.co/400x300?text=Media+Tidak+Dikenali";
+            previewSrc = "https://placehold.co/400x300/2c3e50/ffffff?text=Media+Tidak+Dikenali";
             mediaTag = `<img src="${previewSrc}" class="w-full h-56 object-cover rounded-lg">`;
           }
 
@@ -213,6 +212,8 @@
             content.innerHTML = `<img src="${src}" class="max-h-[90vh] max-w-full rounded-xl shadow-lg">`;
           } else if (type === "iframe") {
             let iframeSrc = src;
+
+            // Google Drive MP4 → pastikan pakai /preview
             if(src.includes("drive.google.com")) {
               const match = src.match(/\/d\/([^/]+)/);
               if(match) {
@@ -250,11 +251,9 @@
       }
     });
     </script>
-
-    <!-- TESTIMONI -->
     <section class="py-20 bg-gray-100">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl font-bold mb-12 text-gray-900">TESTIMONI :</h2>
+        <h2 class="text-xl font-bold mb-12 text-gray-900">TESTIMONI :</h2>
         <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl border-l-8 border-[#e67e22]">
           <p class="text-xl italic mb-6 text-gray-700">
             " Media pembelajaran ini sangat membantu saya dalam mengulang materi kapanpun dan dimanapun berada "
@@ -272,8 +271,6 @@
       </div>
     </section>
   </main>
-
-  <!-- FOOTER -->
   <footer class="brand-primary py-12 text-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
@@ -294,34 +291,29 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
+
         </div>
         <div class="space-y-5 md:space-y-6">
-
-          
           <div>
             <h4 class="text-xl font-bold mb-3 text-[#e67e22]">MEDIA AJAR</h4>
             <p class="text-gray-400 text-sm">Platform pembelajaran interaktif <br>untuk siswa SMKN 2 Palangka Raya <br>Jurusan Akuntansi.</p>
           </div>
-
           <div>
             <h4 class="text-xl font-semibold mb-3">Jurusan SMK</h4>
             <p class="text-gray-400 text-sm mb-2">Akuntansi & Perkantoran</p>
           </div>
-
-         <div id="kontak">
+          <div id="kontak">
             <h4 class="text-xl font-semibold mb-3">Hubungi Kami</h4>
             <p class="text-gray-400 text-sm mb-0">Jl. RA. Kartini - Palangka Raya</p>
           </div>
         </div>
 
       </div>
-      
       <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
         &copy; 2025 SMKN 2 Palangka Raya. Hak Cipta Tariya Sari.
       </div>
     </div>
   </footer>
-
 <script>
     const menuBtn = document.getElementById('menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -329,8 +321,6 @@
     document.querySelectorAll('#mobile-menu a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
-
-    // Menginisialisasi ikon Lucide pada saat konten sudah dimuat
     document.addEventListener("DOMContentLoaded", () => {
         lucide.createIcons();
     });
@@ -371,7 +361,7 @@
           <div class="flex flex-wrap gap-3">
             ${modul.driveLink ? `<a href="${modul.driveLink}" target="_blank" class="flex-1 min-w-[45%] bg-[#2c3e50] text-white font-semibold py-2 rounded-lg text-sm hover:bg-[#34495e] transition text-center">Materi</a>` : ''}
             ${modul.youtubeLink ? `<a href="${modul.youtubeLink}" target="_blank" class="flex-1 min-w-[45%] bg-[#e74c3c] text-white font-semibold py-2 rounded-lg text-sm hover:bg-[#c0392b] transition text-center">Video</a>` : ''}
-            ${modul.tugasLink ? `<a href="${modul.tugasLink}" target="_blank" class="flex-1 min-w-[45%] bg-[#f39c12] text-white font-semibold py-2 rounded-lg text-sm hover:bg-[#d68910] transition text-center">Tugas</a>` : ''}
+            ${modul.tugasLink ? `<a href="${modul.tugasLink}" target="_blank" class="flex-1 min-w-[45%] bg-[#f39c12] text-white font-semibold py-2 rounded-lg text-sm hover:bg-[#d68910] transition text-center">Tugas/Kuis</a>` : ''}
           </div>
         </div>
       `).join('');
